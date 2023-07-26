@@ -1,0 +1,11 @@
+
+1. WAP to check whether a given number is odd or even
+2. WAP to check whether a given year is a leap year or not
+3. WAP to find the roots of quatratic equation
+4. WAP to segregate student based on
+    9<= CGPA <=10  outstanding
+    8<= CGPA <=9   good
+    7<= CGPA <=8   ok
+    6<= CGPA <=7   avg
+    5<= CGPA <=6   below avg
+    CGPA <5        poor
