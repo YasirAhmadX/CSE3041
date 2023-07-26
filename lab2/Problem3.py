@@ -3,9 +3,9 @@
 Given the number of hours and minutes browsed, write a program to calculate bill
 for Internet Browsing. user time limit is 7 hours
 Billing conditions:
-1 hr for Rs.50
-1 min for Rs.1
-Rs.200 for 5 hr
+    1 hr for Rs.50
+    1 min for Rs.1
+    Rs.200 for 5 hr
 """
 
 
