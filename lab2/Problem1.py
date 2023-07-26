@@ -12,6 +12,7 @@ while b>0:
 print(abs(n-rn))
 
 """
+
 n = input()
 rn = n[::-1] #reverse string
 
