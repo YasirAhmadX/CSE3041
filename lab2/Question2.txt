@@ -1,0 +1,9 @@
+Generating numbers 
+generate odd numbers
+generate even numbers
+sum of n natural numbers
+sum of n i/p numbers
+multiplication table
+fib sequence
+factorial
+reverse a number
