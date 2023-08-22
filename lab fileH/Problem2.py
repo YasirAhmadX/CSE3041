@@ -1,12 +1,16 @@
-#22nd August (File handling Problem2 longest sentence) Yasir Ahmad 22MIA1064
+#22nd August (File handling Problem2 longest sentance) Yasir Ahmad 22MIA1064
 
 f1 = open("note.txt","r")
 
-max_len_i = 0
-lines = f1.readlines()
+def longest_line(filename):
+    lngst_line = ""
+    lines = filename.readlines()
 
-for i in range(len(lines)):
-    if len(lines[i]) > len(lines[max_len_i]):
-        max_len_i = i
-        
-print(i,lines[i])
+    for line in lines:
+        if len(line) > len(lngst_line):
+            lngst_line = line
+            
+    return lngst_line
+
+l = longest_line(f1)
+print("longestLine: ",l)
