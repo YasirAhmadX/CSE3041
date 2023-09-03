@@ -15,7 +15,7 @@ for i in range(n):
     if b in inventory.keys():
         if inventory[b][0] >= qt:
             inventory[b][0] -= qt
-            bill = inventory[b][1]*qt
+            bill += inventory[b][1]*qt
         else:
             print("Not enought stock.")
     else:
