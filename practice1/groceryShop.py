@@ -13,7 +13,7 @@ for i in range(n):
     b = input("Enter biscuit name: ")
     qt = int(input("Enter quantity: "))
     if b in inventory.keys():
-        if inventory[b][0] <= qt:
+        if inventory[b][0] >= qt:
             inventory[b][0] -= qt
             bill = inventory[b][1]*qt
         else:
