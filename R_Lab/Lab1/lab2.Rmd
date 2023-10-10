@@ -1,0 +1,67 @@
+## MATRIX
+## A matrix is a two-dimensional rectangular dataset. it can be created using a vector input to the matrix function
+
+#matrix function
+## data is entered columnwise (or do byrow=T)
+##1st arg: c(values of columns)
+##2nd arg: no. of rwos
+##3rd arg: no. of columns
+
+
+A <- matrix(c(2,3,-2,1,2,2),3,2)
+A
+
+## byrow=T
+B <- matrix(c(2,3,-2,1,2,2),3,2,byrow=T)
+B
+
+y <- matrix(1:20,nrow=4,ncol=5)
+y
+
+
+## Naming Row and Columns > use dimnames arg of matrix function
+
+Rownames = c("A","B","C")
+Colnames = c("x","y","z")
+y = matrix(20:9,nrow=3,ncol=3,dimnames = list(Rownames,Colnames))
+y
+
+## Matrix Addtiton and Subtraction
+
+A <- matrix(c(5,4,1,0),2,2)
+B <- matrix(c(1,4,-2,1),2,2)
+
+## elemnetwise mul *
+## matrix mul %*%
+
+A+B
+A*B
+A %*% B
+
+
+## Transpose of matrix > AT <- t(A)
+A
+AT <- t(A)
+AT
+
+
+## diag , zero, ones, eye
+
+
+
+## STATISTICS
+
+A
+
+colSums(A)
+colMeans(A)
+mean(A)
+
+
+## append matrice columnwise
+cbind(A,B)
+
+## append matrice rowise
+rbind(A,B)
+
+
