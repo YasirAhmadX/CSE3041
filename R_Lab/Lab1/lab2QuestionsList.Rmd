@@ -1,0 +1,33 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+## LIST QUESTIONS
+
+#1 Create a list to maintain the details of a student such as registration number, name, no. of courses registered
+
+```{r}
+Stud <- list(Rno = "22MIS1032" , name = "Alex", nCourses = 5, marks = c(90,50,43,45,80))
+Stud
+```
+#2 Access name
+```{r}
+Stud$name
+```
+
+#3 Get Reg No and marks
+```{r}
+Stud$Rmo
+Stud$marks
+```
+
+#4 Display marks of first subject
+```{r}
+Stud$marks[1]
+```
+
+#5 modify marks of 3rd course to 56
+```{r}
+Stud$marks[3] = 56
+Stud
+```
