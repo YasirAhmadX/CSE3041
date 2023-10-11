@@ -1,0 +1,51 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Arrays in R  
+
+##Initializing the array
+```{r}
+v1 = c(5,9,3)
+v2 = c(10,11,12,14,13,15)
+
+result <- array(c(v1,v2),dim=c(3,3,2))
+print(result)
+```
+## Naming the dimensions
+```{r}
+v1 = c(5,9,3)
+v2 = c(10,11,12,14,13,15)
+
+cnames <- c("C1","C2","C3")
+rnames <- c("R1","R2","R3")
+mnames <- c("matrix1","matrix2")
+
+result <- array(c(v1,v2),dim=c(3,3,2),dimnames = list(rnames,cnames,mnames))
+print(result)
+```
+## Calculations across arrays
+## apply
+apply can be used to apply functions to arrays   
+apply(X,MARGIN,FUN)   
+ - X is array or matrix  
+ - MARGIN = 1 manipulation is performed on rows( 2 for columns)  
+ - MARGIN = c(1,2) manipulation is performed on rows and columns  
+ - FUN : tells which function to apply   
+
+```{r}
+m1 <- matrix(C<-(1:10),nrow=5,ncol=6)
+m1
+a_m1 <- apply(m1,2,sum)
+a_m1
+colSums(m1)
+```
+
+## across multiple arrays
+```{r}
+result
+r <- apply(result,c(1),sum)
+r
+```
+
