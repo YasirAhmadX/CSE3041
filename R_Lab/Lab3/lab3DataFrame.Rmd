@@ -107,5 +107,15 @@ subset(df,cyl>5&mpg>20,select=c(-mpg,-cyl))
 ```
 
 
+# avg cylinder of cars
+```{r}
+mean(df$cyl)
+```
+
+
+# name of max mileage car
+```{r}
+subset(df,mpg==max(df$mpg),select=0)
+```
 
 
