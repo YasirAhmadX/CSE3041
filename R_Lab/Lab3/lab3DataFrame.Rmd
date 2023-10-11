@@ -1,0 +1,111 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+# Data frame
+Data frame is a table of information like an Excel Sheet
+Contains rows and columns containing different peices of information
+Each column may be in different data types
+
+ID    NAME  MARKS
+1     Ramu   50
+2     Raju   40
+3     Ravi   25
+
+```{r}
+df <- data.frame(Id = c(1,2,3), Name = c("Ramu","Raju","Ravi"), Marks = c(50,40,25))
+df
+```
+   gender   ht  wt
+1   M     172.0 91
+2   M     186.5 99
+3   F     165.0 74
+
+```{r}
+df <- data.frame(gender = c("M","M","F"),ht=c(172.0,186.5,165.0),wt=c(91,99,74))
+df
+```
+get heights only
+```{r}
+df$ht
+```
+## get weight of 2nd person
+```{r}
+df$wt[2]
+```
+## names of columns
+```{r}
+names(df)
+```
+## rownames
+change index names
+```{r}
+rownames(df) <- c("Alpha","Beta","Charlie")
+df
+```
+
+# Expanding Data Frames
+##> Adding new column
+```{r}
+df$age <- c(28,55,43)
+df
+```
+
+## Adding new rows
+new additions should also be a Data Frame
+```{r}
+m2 <- data.frame(gender = c("M","F"),ht = c(170,166),wt = c(68,72),age = c(38,22))
+rownames(m2) <- c("Delta","Epsilon")
+df2 <- rbind(df,m2)
+df2
+```
+# mtcars
+```{r}
+df = data.frame(mtcars)
+df
+```
+# Basic Operations
+## Head
+```{r}
+head(df)
+```
+## Dimensions
+```{r}
+dim(df)
+```
+## Summary
+```{r}
+summary(df)
+```
+## Subsetting
+rowwise
+```{r}
+df[4:10,]
+```
+column wise
+```{r}
+df[,c(2,6)]
+```
+OR
+```{r}
+df[c("mpg","cyl")]
+```
+```{r}
+df[,c(-3)]
+```
+## Subsetting based on conditions
+```{r}
+subset(df,mpg>18)
+```
+more than one conditions
+```{r}
+subset(df,mpg>16 & cyl>5)
+```
+exclude columns and subset with conditions
+```{r}
+subset(df,cyl>5&mpg>20,select=c(-mpg,-cyl))
+```
+
+
+
+
