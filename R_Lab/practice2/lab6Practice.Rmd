@@ -1,0 +1,72 @@
+---
+title: "Rdplyr practice"
+output: html_notebook
+---
+# Data Manipulation using dplyr package
+*Note: use mtcars dataset*  
+
+### 1. Display all the variables of data with some portion of the data for each variable that can be fit on a single line.
+```{r}
+car = mtcars
+glimpse(car)
+```
+
+### 2.Display all the observations
+```{r}
+car
+```
+
+### 3.Display any 5 observations randomly.
+```{r}
+sample_n(car,5)
+```
+
+### 4.Display only a fraction of observations randomly.
+```{r}
+sample_frac(car,0.3)
+```
+
+### 5.Display only the MPG column.
+```{r}
+select(car,mpg)
+```
+
+### 6.Display the variables that starts with the letter ‘d’
+```{r}
+select(car,starts_with('d'))
+```
+
+### 7.Displays data in the columns from MPG to DISP without the CYL attribute.
+```{r}
+select(car,mpg:disp,-cyl)
+```
+
+### 8.Display all records whose HP values are more than 125 and MPG less than 15.0
+```{r}
+filter(car,hp>125,mpg<15)
+```
+
+### 9.Include a new attribute NV by adding WT and MPG together.
+```{r}
+mutate(car,nv = wt+ mpg)
+```
+
+### 10.Display the maximum and minimum HP value.
+```{r}
+summarize(car,min_hp=min(hp),max_hp=max(hp))
+```
+
+### 11.Filter all the data with HP greater than 125 and arrange them in increasing order of MPG.
+```{r}
+car %>%
+  filter(hp>125) %>%
+  arrange(mpg)
+```
+
+### 12.Calculate the average WT for each unique value in the AM column for mtcar data having HP > 125
+```{r}
+car %>%
+  filter(hp>125)  %>%
+  group_by(am) %>%
+  summarize(avg_wt = mean(wt))
+```
