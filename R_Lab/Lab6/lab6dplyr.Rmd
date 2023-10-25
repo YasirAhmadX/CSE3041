@@ -1,0 +1,100 @@
+---
+title: "R dplyr"
+output: html_notebook
+---
+Deeplyer
+
+dplyr
+
+
+```{r}
+plot(cars)
+```
+rows:
+filter()
+arrange()
+
+columns:
+select()
+mutate()
+rename()
+
+group of rows:
+summarize()
+
+## The Pipe
+
+%>%f1%>%f2
+
+```{r}
+install.packages("dplyr")
+library("dplyr")
+```
+
+```{r}
+dim(airquality)
+air_quality = airquality
+str(air_quality)
+```
+
+```{r}
+glimpse(airquality)
+mydata = airquality
+sample_n(mydata,3)
+head(mydata)
+sample_frac(mydata,0.1)
+x1 = distinct(mydata)
+```
+# Filtering
+Selecting all rows where Temp is more than 90 degree and Month equal to 9(September)
+```{r}
+
+filter(air_quality,Month==9, Temp>90)
+##source local data frame
+```
+
+# Arrange
+order in ascending order of the month
+
+```{r}
+arrange(air_quality,Day,desc(Month))
+```
+
+# Mutate
+add columns
+```{r}
+mutate(air_quality,temp_celsius=(Temp-32)*5/9)
+```
+
+```{r}
+select(air_quality,Ozone:Wind)
+select(air_quality,-Solar.R)
+select(air_quality,contains("o")) 
+#instead of "o" you can use starts_with,ends_with or matches
+```
+
+# Rename
+```{r}
+rename(air_quality,newSolar.R=Solar.R)
+```
+
+# Summarise
+```{r}
+summarise(air_quality,max_temp=max(Temp),min_temp=min(Temp))
+```
+```{r}
+summarise(air_quality,median_Oz=median(Ozone,na.rm = TRUE))
+```
+# Using Pipe
+use pipe to couple the functions
+```{r}
+air_quality %>%
+  group_by(Month) %>%
+  filter(Month > 4 & Month <= 8) %>%
+  summarize(mean=mean(Temp,na.rm=TRUE))
+```
+
+
+
+
+
