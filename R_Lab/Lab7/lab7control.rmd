@@ -1,0 +1,61 @@
+---
+title: "lab7control"
+author: "Yasir Ahmad"
+date: "2023-10-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Control Statements in R
+* if condition
+* else condition
+* for loop
+* while loop
+* repeat and break statement
+* return statement
+* next statement -> continue
+
+## For loop
+```{r cars}
+for(i in 1:10)
+{
+  print(i^2)
+}
+
+x <- letters[10:20]
+for(i in x){
+  print(i)
+}
+```
+
+## While loop
+```{r}
+i=10
+while(i<20){
+  print(i)
+  i=i+2
+}
+```
+
+## INPUTS
+```{r}
+x = readline("Give input: ")
+x = as.integer(x)
+print(x)
+cat("x=",x) #concatenates arguments
+```
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+---
+title: "lab7controlPractice"
+author: "Yasir Ahmad"
+date: "2023-10-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Questions
+
+## 1 Write a program in R to find the sum of first ‘n’ Fibonacci numbers
+```{r}
+n = readline("Enter the value of n: ")
+n = as.integer(n)
+fibo = c(0,1)
+sum = 1
+for(i in 3:n){
+  fibo[i] = fibo[i-1] + fibo[i-2]
+  sum = sum + fibo[i]
+}
+
+cat("sum of",n,"fibonacci numbers is",sum)
+```
+
+## 2 Print the number of vowels and consonants present in your name.
+```{r}
+name = readline("Enter name: ")
+name = strsplit(name,"")[[1]]
+Vcount = 0
+Ccount = 0
+V = c('a','e','i','o','u')
+for(i in name){
+  #print(i)
+  if(i %in% V){
+    Vcount = Vcount + 1
+  }
+  else{
+    Ccount = Ccount + 1
+  }
+}
+print(name)
+cat("Number of vowels: ",Vcount,"\n")
+cat("Number of consonants: ",Ccount)
+```
+
+## 3 Given a number, write r script to print the pairwise factors of the given number
+```{r}
+x = readline("Enter number: ")
+x = as.integer(x)
+for(i in 1:x){
+  if(x%%i==0){
+    cat(i,",",x/i,"\n")
+  }
+}
+```
+
+## 4 Write a program to generate any 10 random numbers between 10 and 100 and then create two vectors to store the odd and even numbers.
+```{r}
+EvnV = c()
+OddV = c()
+for(i in 1:10){
+  r = sample(10:100,1)
+  print(r)
+  if(r%%2==0){
+    EvnV = append(EvnV,r)
+  }
+  else{
+    OddV = append(OddV,r)
+  }
+}
+cat("Even numbers:",EvnV,"\n")
+cat("Odd numbers: ",OddV)
+```
+
+## Password Validation
+Find the strength of the given password. The password is strong if it satisfies all the below
+conditions. A moderate password is one that satisfies first three conditions and has length at
+least 6, otherwise password is week.
+* It contains at least one lowercase English character.
+* It contains at least one uppercase English character.
+* It contains at least one special character. The special characters are: !@#$%^&*()-+
+* Its length is at least 8.
+* It contains at least one digit.
+
+```{r}
+pswd = readline("Enter Password: ")
+pd_st = strsplit(pswd,"")[[1]]
+Co = c(FALSE,FALSE,FALSE,FALSE,FALSE)
+Co[4] = length(pd_st)>7 
+for(i in pd_st){
+  if(i %in% c("!","@","#","$","%","^","&","*","(",")","-","+")){
+    Co[3] = TRUE
+  }
+  if(i %in% letters){
+    Co[1] = TRUE
+  }
+  if(i %in% LETTERS){
+    Co[2] = TRUE
+  }
+  if(i %in% c("1","2","3","4","5","6","7","8","9","0")){
+    Co[5] = TRUE
+  }
+}
+if(sum(Co)==5){
+  print("Strong Password")
+}else {
+  if((sum(Co[1:3])==3) && (length(pswd)>5)){
+  print("Moderate Pasword")
+  }else{
+    print("Weak Password")
+  }
+}
+
+```
+
+
+
