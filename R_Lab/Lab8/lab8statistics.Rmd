@@ -1,0 +1,195 @@
+---
+title: "lab8statistics"
+author: "Yasir Ahmad"
+date: "2023-10-31"
+output: html_document
+---
+
+# Basic Statistics in R
+## Measurement of dispersion
+* range  
+* inter-quartile range  (IQR) 
+* standard deviation  
+* distance
+
+## Outliers
+```
+Outliers(lower) = Q1 - 1.5*IQR
+Outliers(upper) = Q3 + 1.5*IQR
+```
+Use box plot to visualize the outliers.
+
+## Coefficient of Variation
+```
+CV = (sd/mean)*100
+```
+## Skewness
+* Positively Skewed
+* Negatively Skewed
+
+```
+Skewness = (mean-mode)/sd 
+         = 3(mean-median)/sd
+```
+```
+Skewness = 0 -> symmetric  
+         = -0.5 to +0.5 -> approximately symmetric  
+         = -1 to +1 -> moderately skewed  
+         = <-1 to >+1 -> highly skewed  
+```      
+         
+         
+## Kurtosis
+* mesokurtic = 0
+* laptokurtic > 3
+* platykurtic <3
+
+## covariance and correlation
+Relationship between two attributes
+
+if cov > 0 => directly proportional  
+if cov <0 => inversely proportional
+if cov 0 => random
+
+## correlation matrix
+Heatmap of all the correlation coefficients between every possible pair of variables
+
+# Code
+```{r}
+library(MASS)
+```
+
+```{r}
+newg = na.omit(geyser)
+View(newg)
+```
+
+```{r}
+newf = na.omit(faithful)
+View(newf)
+```
+
+
+## Calculate statistics
+### MEAN
+```{r}
+mu = mean(newf$eruptions)
+cat("Mean of eruptions is",mu)
+```
+### Median
+```{r}
+Q2 = median(newf$eruptions)
+cat("Median of eruptions is",Q2)
+```
+### Quartiles
+```{r}
+quantile(newf$eruptions)
+```
+* 80 percentile and 75 percentile
+```{r}
+quantile(newf$eruptions,c(0.8,0.75))
+```
+### IQR
+```{r}
+iqr = IQR(newf$eruptions)
+cat("Inter quartile range of eruptions is ",iqr)
+```
+
+### Range
+```{r}
+quantile(newf$eruptions,1)-quantile(newf$eruptions,0)
+#or
+range = max(newf$eruptions) - min(newf$eruptions)
+cat("range of eruptions is ",range)
+```
+
+### var
+```{r}
+vr = var(newf$eruptions)
+cat("variance of eruptions is ",vr)
+```
+
+### sd
+```{r}
+s = sd(newf$eruptions)
+cat("standart deviation of eruptions is ",s)
+```
+
+#library e1071
+`e1071` is required for following operations
+```{r}
+library("e1071")
+e = newf$eruptions
+```
+
+
+### central moment
+order = k =3
+```{r}
+mu3 = moment(e,order=3,center=TRUE)
+cat("Central moment of order 3 is ",mu3)
+```
+
+### skewness
+```{r}
+sk = skewness(e)
+
+if(sk > 0){
+  print("Positive (RIGHT) skewed")
+}else if(sk < 0){
+  print("Negative (LEFT) skewed")
+}
+
+if(sk == 0){
+  cat("Perfectly symmetric, skewness =",sk)
+}else if(-0.5<sk && sk<0.5){
+  cat("Approximately skewed, skewness=",sk)
+}else if(-1<sk && sk<1){
+  cat("Moderately skewed, skewness=",sk)
+}else{
+  cat("Highly skewed, skewness=",sk)
+}
+```
+
+### kurtosis
+```{r}
+k = kurtosis(e)
+if(k == 3){
+  cat("Mesokurtic, kurtosis =",k)
+}else if(k>3){
+  cat("Leptokurtic, kurtosis =",k)
+}else{
+  cat("Platykurtic, kurtosis =",k)
+}
+```
+### correlation and covariance
+```{r}
+covar = cov(e,newf$waiting)
+corr = cor(e,newf$waiting)
+
+if(covar==0){
+  cat("No relation among variables, covariance =",covar)
+}else if (covar>0){
+  cat("Variables are positively related(directly proportional), covariance =",covar)
+}else{
+  cat("Variables are negatively related(inversely proportional), covariance =",covar)
+}
+cat("\n")
+if(corr==0){
+  cat("No relation among variables, correlation =",corr)
+}else if (corr==1 || corr==-1){
+  cat("Variables are perfectly related, correlation =",corr)
+}else if (corr>0){
+  cat("Variables are positively related(directly proportional), correlation =",corr)
+}else{
+  cat("Variables are negatively related(inversely proportional), correlation =",ccrr)
+}
+```
+
+
+
+
+
+
+
+
