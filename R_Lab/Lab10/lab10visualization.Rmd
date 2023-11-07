@@ -1,0 +1,137 @@
+---
+title: "lab10visualization"
+author: "Yasir Ahmad"
+date: "2023-11-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Visualization libraries
+* Base Graphics  
+* ggplot2  
+* grid Graphics  
+* lattice Graphics  
+
+```{r }
+data = airquality
+View(data)
+```
+
+
+## Basic plots
+### plot()
+
+```{r}
+plot(data$Ozone)
+```
+
+### Scatterplot
+```{r}
+plot(data$Ozone,data$Wind)
+```
+
+```{r}
+freq = table(data$Month)
+freq
+plot(freq)
+```
+
+#### When the scatter plot is used with entire dataset, a matrix of scatterplot is obtained which is a correlation matrix of all the columns
+```{r}
+plot(data)
+```
+
+### Barplot
+```{r}
+barplot(data$Ozone,main="Ozone levels")
+```
+```{r}
+barplot(data$Ozone,main="Ozone levels",horiz=TRUE)
+```
+
+### Histogram
+```{r}
+hist(data$Solar.R)
+```
+
+
+
+### Box plot
+```{r}
+boxplot(data$Ozone)
+```
+```{r}
+boxplot(data[1:4],main="Multiple Box plot")
+summary(data[1:4])
+```
+
+## ggplot
+`library(ggplot2)`
+mandatory attributes
+* Data
+* Aesthetics
+* Geometrics
+
+other attributes are facets,statistics,coordinates,themes
+```{r}
+library(ggplot2)
+```
+
+### common plots
+
+**Scatter plot** geom_point  
+**Bar plot** geom_bar  
+**Histogram** geom_histogram  
+**Linechart** geom_line  
+**ploygon** geom_ploygon  
+
+
+## ggplot() - Scatterplot
+```{r}
+ggplot(iris, aes(x=Sepal.Length,y=Petal.Length))+geom_point()
+
+ggplot(data=mtcars,aes(x=wt,y=mpg))+geom_point()
+```
+
+```{r}
+ggplot(iris, aes(x=Sepal.Length,y=Petal.Length, col=Species))+geom_point()
+```
+
+```{r}
+ggplot(iris, aes(x=Sepal.Length,y=Petal.Length,col=Species,shape=Species))+geom_point()
+```
+
+```{r}
+ggplot(iris, aes(x=Sepal.Length,y=Petal.Length,col=Species))+geom_point() +geom_smooth()
+```
+
+## ggplot() - Bar plot
+```{r}
+ggplot(mtcars,aes(x=gear))+geom_bar()
+```
+
+## ggplot() - HIstogram
+```{r}
+ggplot(mtcars,aes(x=mpg))+geom_histogram()
+```
+
+## ggplot() - Box plot
+```{r}
+ggplot(mtcars,aes(x=as.factor(cyl),y=mpg))+geom_boxplot()
+```
+`
+
+
+
+
+
+
+
+
+
+
+
+

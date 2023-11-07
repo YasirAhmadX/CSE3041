@@ -1,0 +1,142 @@
+---
+title: "lab10practice"
+author: "Yasir Ahmad"
+date: "2023-11-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Visualisation practice
+Use the newsurvey data obtained by cleaning "na" values in survey data of MASS package to
+do the following:   
+```{r}
+library(MASS)
+library(ggplot2)
+newsurvey = na.omit(survey)
+```
+
+1. Plot a bar graph for the number of male and female participants in the survey. Provide
+the title as “Male and Female participants”, y-axis label as “frequency” and specify
+the colours for the bars.   
+```{r}
+freq = table(newsurvey$Sex)
+barplot(freq,main="Male and Female participants", ylab="frequency",col=c('red','blue'))
+```
+
+2. Plot a bar graph for the number of left handers and right handers in the survey.
+Provide the title as “Left Handers and Right Handers”, y-axis label as “count” and
+specify the colours for the bars  
+```{r}
+freq = table(newsurvey$W.Hnd)
+barplot(freq,main="Left Handers and Right Handers",ylab = "count", col=c("red","blue"))
+```
+
+3. Plot the distribution between male left handers and female left handers using bar
+chart. Provide the title as “Female Left Handers and Male Left Handers , y-axis label
+as “count” and specify the colours for the bars.  
+```{r}
+library(dplyr)
+lft_hnders = filter(newsurvey,newsurvey$W.Hnd=="Left")
+freq = table(lft_hnders$Sex)
+barplot(freq, main="Female Left Handers and Male Left Handers", ylab="count",col = c('green','blue'))
+```
+
+4. Draw the histogram of age distribution with the title as „Age distribution‟ and xlabel
+as „Age range‟ and ylabel as „frequency‟.
+```{r}
+hist(newsurvey$Age,main="Age Distribution",xlab="Age range",ylab="frequency")
+```
+
+5. Reveal the relationship between the age and writing hand span using scatter plot.
+```{r}
+plot(newsurvey$Wr.Hnd,newsurvey$Age)
+```
+
+6. Draw the boxplot for pulse rate to analyse the five summary statistics. Provide
+appropriate title and label.
+```{r}
+boxplot(newsurvey$Pulse,main="boxplot of pulse rate")
+summary(newsurvey$Pulse)
+```
+7. Draw the distribution of smoking habits of male left handers using pie chart.
+```{r}
+m_L = filter(lft_hnders,lft_hnders$Sex=="Male")
+freq = table(m_L$Smoke)
+pie(freq)
+```
+
+Read iris.csv or weather.csv
+```{r}
+data = iris
+```
+* Apply various visualization techniques.
+```{r}
+plot(iris$Sepal.Length,iris$Sepal.Width, main="Sepal length vs Sepal width")
+```
+* Perform correlation analysis and state the inferences
+```{r}
+plot(iris, main="Finding correlations using multiple scatter plot")
+```
+```{r}
+slen_swid = cor(iris$Sepal.Length,iris$Sepal.Width)
+slen_plen = cor(iris$Sepal.Length,iris$Petal.Length)
+slen_pwid = cor(iris$Sepal.Length,iris$Petal.Width)
+swid_plen = cor(iris$Sepal.Width,iris$Petal.Length)
+swid_pwid = cor(iris$Sepal.Width,iris$Petal.Width)
+plen_pwid = cor(iris$Petal.Length,iris$Petal.Width)
+
+slen_swid
+slen_plen 
+slen_pwid 
+swid_plen
+swid_pwid
+plen_pwid
+```
+therefore Sepal length and Petal length are positively correlated, Sepal length and Petal width are positively correlated and Petal length and Petal width are positively correlated  
+
+
+* Identify outliers
+```{r}
+boxplot(iris,main="Finding outliers")
+```
+
+
+*   Plot the frequency table
+```{r}
+freq = table(iris$Species)
+pie(freq)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
